@@ -21,7 +21,7 @@ const TicketsService = {
       });
   },
 
-  updateTicket(db, id) {
+  updateTicket(db, id, updateTicket) {
     return db("help_tickets")
       .where({ id })
       .update(updateTicket)
