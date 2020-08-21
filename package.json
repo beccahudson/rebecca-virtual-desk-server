@@ -7,11 +7,13 @@
     "seed-virtual-desk": "psql -U postgres -d virtual-desk -f ./seeds/seed.virtual-desk_tables.sql",
     "migrate": "postgrator --config postgrator-config.js",
     "migrate:test": "env NODE_ENV=test npm run migrate",
+    "migrate:production": "heroku run npm run migrate",
     "test": "mocha --require test/setup.js --watch",
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "predeploy": "npm audit",
-    "deploy": "git push heroku master"
+    "deploy": "git push heroku master",
+    "postdeploy": "npm run migrate:production"
   },
   "keywords": [],
   "engines": {
