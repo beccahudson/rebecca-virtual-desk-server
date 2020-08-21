@@ -1,0 +1,5 @@
+ALTER TABLE IF EXISTS help_tickets 
+    DROP COLUMN IF EXISTS student_id,
+    DROP COLUMN IF EXISTS faculty_id;
+
+DROP TABLE IF EXISTS users;

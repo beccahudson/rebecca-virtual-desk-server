@@ -1,4 +1,0 @@
-ALTER TABLE help_tickets
-  DROP COLUMN IF EXISTS ttt_id;
-
-DROP TABLE IF EXISTS ttt_users;
