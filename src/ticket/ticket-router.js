@@ -66,7 +66,6 @@ ticketsRouter.route("/by_user").get(requireAuth, (req, res, next) => {
 // EACH HELP TICKET
 ticketsRouter
   .route("/:id")
-  //.all(checkTicketExists)
   .get((req, res) => {
     res.json(TicketsService.help_tickets);
   })
@@ -82,23 +81,5 @@ ticketsRouter
       updateTicket
     ).then((ticket) => res.status(200).json(serializeTicket(ticket)));
   });
-
-// async function checkTicketExists(req, res, next) {
-//   try {
-//     const { id } = req.params.id;
-//     const knexInstance = req.app.get("db");
-//     const ticket = await TicketsService.getById(knexInstance, id);
-
-//     if (!ticket)
-//       return res.status(404).json({
-//         error: `Ticket doesn't exist`,
-//       });
-
-//     res.ticket = ticket;
-//     next();
-//   } catch (error) {
-//     next(error);
-//   }
-// }
 
 module.exports = ticketsRouter;

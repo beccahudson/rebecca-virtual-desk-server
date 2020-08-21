@@ -33,7 +33,12 @@ usersRouter.route("/").get((req, res, next) => {
 
 //GET USERS BY ID
 usersRouter.route("/user").get(requireAuth, (req, res, next) => {
-  res.json(req.user);
+  const knexInstance = req.app.get("db");
+  UsersService.getById(knexInstance)
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch(next);
 });
 
 module.exports = usersRouter;
