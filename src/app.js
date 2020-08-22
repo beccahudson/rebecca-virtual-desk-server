@@ -12,11 +12,27 @@ const app = express();
 
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 
+// Set up a whitelist and check against it:
+const whitelist = [
+  "http://virtual-desk.vercel.app/",
+  "https://virtual-desk.vercel.app/",
+];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
 //middleware
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(express.json());
-app.use(cors());
+// Pass whitelist to cors:
+app.use(cors(corsOptions));
 
 app.use("/help_tickets", ticketsRouter);
 app.use("/users", usersRouter);
