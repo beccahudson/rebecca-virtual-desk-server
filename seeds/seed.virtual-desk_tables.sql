@@ -1,10 +1,3 @@
-BEGIN;
-
-TRUNCATE   
-  "help_tickets",
-  "users"  
-RESTART IDENTITY CASCADE;
-
 INSERT INTO help_tickets (student_id, subject, question, date_due, faculty_id, ticket_status)
 VALUES
   (1, 'math', 'What is math?', '2021-01-11', null, 'NEW'),
@@ -18,7 +11,3 @@ INSERT INTO users (type, first_name, last_name, phone, email, password, grade)
 VALUES  
   ('student', 'Charlie', 'Student', 1231231234, 'fake@student.email.com', 'password', 10),
   ('teacher', 'Sam', 'Smith', 1231231234, 'fake@teacher.email.com', 'password', 10);
-  
-
-COMMIT;
-

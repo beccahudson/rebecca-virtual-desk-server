@@ -7,6 +7,8 @@ const { requireAuth } = require("../middleware/jwt-auth");
 const ticketsRouter = express.Router();
 const jsonParser = express.json();
 
+const updateTicket = {};
+
 const serializeTicket = (help_tickets) => ({
   id: help_tickets.id,
   subject: xss(help_tickets.subject),
@@ -70,11 +72,21 @@ ticketsRouter
     res.json(TicketsService.help_tickets);
   })
   .patch(requireAuth, (req, res) => {
-    const updateTicket = {
-      faculty_id: req.user.id,
-      date_assigned: "NOW()",
-      ticket_status: "IN PROGRESS",
-    };
+    //DETERMINES WHAT TO UPDATE
+    {
+      ticket_status == "IN PROGRESS"
+        ? (updateTicket = {
+            faculty_id: req.user.id,
+            date_assigned: "NOW()",
+            ticket_status: "IN PROGRESS",
+          })
+        : (updateTicket = {
+            faculty_id: req.user.id,
+            date_closed: "NOW()",
+            ticket_status: "CLOSED",
+          });
+    }
+
     TicketsService.updateTicket(
       req.app.get("db"),
       req.params.id,

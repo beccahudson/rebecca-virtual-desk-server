@@ -12,33 +12,26 @@ const app = express();
 
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 
-// Set up a whitelist and check against it:
-const whitelist = [
-  "http://virtual-desk.vercel.app/",
-  "https://virtual-desk.vercel.app/",
-];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+// app.options("http://localhost:3000", cors());
+// app.get("http://localhost:3000", cors(), function (req, res, next) {
+//   res.json({ msg: "This is CORS-enabled for all origins!" });
+// });
+// app.listen(3000, function () {
+//   console.log("CORS-enabled web server listening on port 80");
+// });
 
 //middleware
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(express.json());
-// Pass whitelist to cors:
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use("/help_tickets", ticketsRouter);
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 
 app.use((error, req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   let response;
   if (NODE_ENV === "production") {
     response = { error: "Internal Service Error" };
