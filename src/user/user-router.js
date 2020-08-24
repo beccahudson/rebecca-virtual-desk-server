@@ -22,8 +22,7 @@ const serializeUser = (users) => ({
 });
 
 //GET ALL USERS
-usersRouter.route("/").get((req, res, next) => {
-  res.redirect("/users");
+usersRouter.route("/users").get((req, res, next) => {
   const knexInstance = req.app.get("db");
   UsersService.getAllUsers(knexInstance)
     .then((users) => {
