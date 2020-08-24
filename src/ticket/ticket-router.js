@@ -24,6 +24,7 @@ const serializeTicket = (help_tickets) => ({
 ticketsRouter
   .route("/")
   .get((req, res, next) => {
+    res.redirect("/help_tickets");
     const knexInstance = req.app.get("db");
     TicketsService.getAllTickets(knexInstance)
       .then((help_tickets) => {
