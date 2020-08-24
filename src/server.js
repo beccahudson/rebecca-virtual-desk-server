@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const knex = require("knex");
 const app = require("./app");
-const { PORT, DATABASE_URL } = require("./config");
+const { PORT, NODE_ENV, DATABASE_URL } = require("./config");
 
 const db = knex({
   client: "pg",
@@ -12,5 +12,7 @@ app.set("db", db);
 app.set("port", PORT);
 
 app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${PORT}`);
+  console.log(
+    `Server is listening in ${NODE_ENV} mode at http://localhost:${PORT}`
+  );
 });
