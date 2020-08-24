@@ -29,9 +29,6 @@ authRouter.post("/login", (req, res, next) => {
             });
           const sub = dbUser.email;
           const payload = { user_id: dbUser.id };
-          // console.log(
-          //   `authRouter: getUserWithEmail: sub, payload.user_id: ${sub}, ${payload.user_id}`
-          // );
           res.send({
             authToken: AuthService.createJwt(sub, payload),
           });

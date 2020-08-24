@@ -16,3 +16,4 @@ app.listen(PORT, () => {
     `Server is listening in ${NODE_ENV} mode at http://localhost:${PORT}`
   );
 });
+//Todo: Replace localhost with a real url in future
