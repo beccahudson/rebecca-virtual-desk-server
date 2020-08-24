@@ -13,9 +13,3 @@ CREATE TABLE IF NOT EXISTS users (
     intro TEXT,
     profile TEXT
 );
-
-ALTER TABLE help_tickets 
-    ADD COLUMN IF NOT EXISTS
-        student_id INT REFERENCES users(id) ON DELETE CASCADE,
-    ADD COLUMN IF NOT EXISTS
-        faculty_id INT REFERENCES users(id) ON DELETE CASCADE;
