@@ -72,6 +72,7 @@ ticketsRouter
   .patch(jsonParser, requireAuth, (req, res) => {
     const updateTicket = {
       student_id: req.user.id,
+      faculty_id: req.faculty,
       date_assigned: "NOW()",
       ticket_status: "IN PROGRESS",
     };
