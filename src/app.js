@@ -10,18 +10,10 @@ const authRouter = require("./auth/auth-router");
 
 const app = express();
 
-const morganOption = NODE_ENV === "production" ? "tiny" : "common";
-
-// app.options("http://localhost:3000", cors());
-// app.get("http://localhost:3000", cors(), function (req, res, next) {
-//   res.json({ msg: "This is CORS-enabled for all origins!" });
-// });
-// app.listen(3000, function () {
-//   console.log("CORS-enabled web server listening on port 80");
-// });
+const morganSetting = process.env.NODE_ENV === "production" ? "tiny" : "common";
 
 //middleware
-app.use(morgan(morganOption));
+app.use(morgan(morganSetting));
 app.use(helmet());
 app.use(express.json());
 app.use(cors());
@@ -31,13 +23,11 @@ app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 
 app.use((error, req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   let response;
-  if (NODE_ENV === "production") {
-    response = { error: "Internal Service Error" };
+  if (process.env.NODE_ENV === "production") {
+    response = { error: { message: "server error" } };
   } else {
-    console.log(error);
-    response = { message: error.message, error };
+    response = { error };
   }
   res.status(500).json(response);
 });
