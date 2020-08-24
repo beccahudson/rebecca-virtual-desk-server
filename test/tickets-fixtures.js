@@ -1,50 +1,53 @@
-function makeBookmarksArray() {
+function makeTicketsArray() {
   return [
     {
-      id: 1,
-      title: "Thinkful",
-      url: "https://www.thinkful.com",
-      description: "Think outside the classroom",
-      rating: 5,
+      student_id: 1,
+      subject: "math",
+      question: "What is math?",
+      date_due: "2021-01-11",
+      faculty_id: 2,
+      ticket_status: "NEW",
     },
     {
-      id: 2,
-      title: "Google",
-      url: "https://www.google.com",
-      description: "Where we find everything else",
-      rating: 4,
+      student_id: 1,
+      subject: "science",
+      question: "What is science?",
+      date_due: "2021-02-22",
+      faculty_id: 2,
+      ticket_status: "IN PROGRESS",
     },
     {
-      id: 3,
-      title: "MDN",
-      url: "https://developer.mozilla.org",
-      description: "The only place to find web documentation",
-      rating: 5,
+      student_id: 1,
+      subject: "history",
+      question: "What is history?",
+      date_due: "2021-03-03",
+      faculty_id: 2,
+      ticket_status: "CLOSED",
     },
   ];
 }
 
-function makeMaliciousBookmark() {
-  const maliciousBookmark = {
-    id: 911,
-    title: 'Naughty naughty very naughty <script>alert("xss");</script>',
-    url: "https://www.hackers.com",
-    description: `Bad image <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.`,
-    rating: 1,
+function makeMaliciousTicket() {
+  const maliciousTicket = {
+    student_id: 911,
+    subject: "Bad subject",
+    question: 'Very bad question <script>alert("xss");</script>',
+    date_due: "0-0-0000",
+    faculty_id: -2,
+    ticket_status: "OPEN",
   };
-  const expectedBookmark = {
-    ...maliciousBookmark,
-    title:
-      'Naughty naughty very naughty &lt;script&gt;alert("xss");&lt;/script&gt;',
-    description: `Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`,
+  const expectedTicket = {
+    ...maliciousTicket,
+    question: 'Very bad question &lt;script&gt;alert("xss");&lt;/script&gt;',
+    ticket_status: "3",
   };
   return {
-    maliciousBookmark,
-    expectedBookmark,
+    maliciousTicket,
+    expectedTicket,
   };
 }
 
 module.exports = {
-  makeBookmarksArray,
-  makeMaliciousBookmark,
+  makeTicketsArray,
+  makeMaliciousTicket,
 };

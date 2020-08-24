@@ -1,4 +1,4 @@
-const { expect } = require("chai");
+const fixtures = require("./bookmarks-fixtures");
 const knex = require("knex");
 const app = require("../src/app");
 
@@ -8,7 +8,7 @@ describe.only("Tickets Endpoints", function () {
   before("make knex instance", () => {
     db = knex({
       client: "pg",
-      connection: process.env.TEST_DATABASE_URL,
+      connection: process.env.TEST_DB_URL,
     });
     app.set("db", db);
   });
@@ -20,36 +20,29 @@ describe.only("Tickets Endpoints", function () {
   afterEach("cleanup", () => db("help_tickets").truncate());
 
   describe(`Unauthorized requests`, () => {
-    const testBookmarks = fixtures.makeBookmarksArray();
+    const testTickets = fixtures.makeTicketsArray();
 
-    beforeEach("insert bookmarks", () => {
-      return db.into("bookmarks").insert(testBookmarks);
+    beforeEach("insert ticket", () => {
+      return db.into("help_tickets").insert(testTickets);
     });
 
-    it(`responds with 401 Unauthorized for GET /bookmarks`, () => {
+    it(`responds with 401 Unauthorized for GET /help_tickets`, () => {
       return supertest(app)
-        .get("/bookmarks")
+        .get("/help_tickets")
         .expect(401, { error: "Unauthorized request" });
     });
 
-    it(`responds with 401 Unauthorized for POST /bookmarks`, () => {
+    it(`responds with 401 Unauthorized for POST /help_tickets`, () => {
       return supertest(app)
-        .post("/bookmarks")
+        .post("/help_tickets")
         .send({ title: "test-title", url: "http://some.thing.com", rating: 1 })
         .expect(401, { error: "Unauthorized request" });
     });
 
-    it(`responds with 401 Unauthorized for GET /bookmarks/:id`, () => {
-      const secondBookmark = testBookmarks[1];
+    it(`responds with 401 Unauthorized for GET /help_tickets/:id`, () => {
+      const secondTicket = testTickets[1];
       return supertest(app)
-        .get(`/bookmarks/${secondBookmark.id}`)
-        .expect(401, { error: "Unauthorized request" });
-    });
-
-    it(`responds with 401 Unauthorized for DELETE /bookmarks/:id`, () => {
-      const aBookmark = testBookmarks[1];
-      return supertest(app)
-        .delete(`/bookmarks/${aBookmark.id}`)
+        .get(`/help_tickets/${secondTicket.id}`)
         .expect(401, { error: "Unauthorized request" });
     });
   });
