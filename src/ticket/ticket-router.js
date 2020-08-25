@@ -70,6 +70,25 @@ ticketsRouter
     res.json(TicketsService.help_tickets);
   })
   .patch(jsonParser, requireAuth, (req, res) => {
+    // Todo: check the body for a closeMe property
+    // if property exists = true, create updateTicket that is closed
+    // if not create updateTicket that is claimed
+    // then call updateTicket for
+
+    // if (req.body.closeMe === true) {
+    // updateTicket = {
+    //   date_closed: "NOW()",
+    //   ticket_status: "CLOSED",
+    // };
+    // } else{
+    // updateTicket = {
+    //   faculty_id: req.user.id,
+    //   date_assigned: "NOW()",
+    //   ticket_status: "IN PROGRESS",
+    // };
+    // }
+    // }
+
     const updateTicket = {
       faculty_id: req.user.id,
       date_assigned: "NOW()",
