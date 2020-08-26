@@ -8,6 +8,6 @@ CREATE TABLE IF NOT EXISTS help_tickets (
     date_closed TIMESTAMPTZ,
     ticket_status TEXT,
     student_id INT REFERENCES users(id) ON DELETE CASCADE,
-    faculty_id INT REFERENCES users(id) ON DELETE CASCADE;
+    faculty_id INT REFERENCES users(id) ON DELETE CASCADE
 );
 
