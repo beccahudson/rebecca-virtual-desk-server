@@ -2,10 +2,6 @@ process.env.NODE_ENV = "test";
 
 require("dotenv").config();
 
-process.env.TEST_DATABASE_URL =
-  process.env.TEST_DATABASE_URL ||
-  "postgresql://localhost@fake@student.email.com:password/virtual-test";
-
 const { expect } = require("chai");
 const supertest = require("supertest");
 
