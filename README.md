@@ -1,29 +1,110 @@
-# Express Boilerplate!
+# Virtual Desk: Get Help NOW
 
-This is a boilerplate project used for starting new projects!
+## Rebecca Hudson
 
-## Set up
+**Live app: https://virtual-desk.vercel.app/**
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## Table of Contents
 
-1. Clone this repository to your local machine `git clone EXPRESS-BOILERPLATE NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+1. Need
+2. Description
+3. How It Works
+4. Client Documentation/Screenshots
+   - Welcome Page
+   - Login Page
+   - Student's Views
+     - Help Ticket Queue
+     - New Ticket Form
+     - View NEW Ticket Info
+     - View IN PROGRESS Ticket Info
+     - View CLOSED Ticket Info
+   - Teacher's Views
+     - Help Ticket Queue
+     - View NEW Ticket Info
+     - View IN PROGRESS Ticket Info
+     - View CLOSED Ticket Info
+5. Technologies
 
-## Scripts
+---
 
-Start the application `npm start`
+## Need
 
-Start nodemon for the application `npm run dev`
+Virtual students have always dealt with issues getting help with assignments within 48 hours; leaving them stressed and consistently getting behind. Virtual Teachers carry a big role with many students and do the best that they can.
 
-Run the tests `npm test`
+With the state of our nation, dealing with a pandemic forcing families to stay home, so many of them are enrolling their children into the virtual environment. 48 hours+ will become the norm and our children will never catch up.
 
-## Deploying
+## Description
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+Virtual Desk is an app for students to get help more efficiently from a pool of approved resources such as teachers and teacher assistants. Not only will students be able to get help faster, it will also free the teachers from being the only available source for students to seek help.
 
+## How It Works
 
-psql -U postgres -d virtual-desk -f ./seeds/seed.virtual-desk-tables.sql
+As the student, I can:
+
+- View my "Help Queue" listing all New tickets, In Progress and Closed tickets.
+- Open a help ticket by completing a form containing: subject, question and a due date for the assignment or project.
+- Close a help ticket when I am satisfied with the help.
+
+As the teacher, I can:
+
+- View my "Help Queue" with a list of all current New tickets, In Progress and Closed tickets.
+- Find a help ticket that I can pick up containing: subject, question and a due date of when the assignment or project.
+- Close a help ticket when the student is satisfied with their help.
+
+## Client Documentation/Screenshots
+
+1. **Welcome Page** - Click "Login" from the welcome page.
+
+   ![Welcome Page](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/welcome-page.png?raw=true)
+
+2. **Login Page** - Login with given credentials; this will be an email and a password.
+
+   ![Login Page](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/login-page.png?raw=true)
+
+### Student Views
+
+3. **Help Ticket Queue - Students View** - Students you can view new, in progress and closed tickets. You can also choose to open a new ticket or click on a ticket for more information.
+
+   ![Students Help Ticket Page](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/student-help-ticket-page.png?raw=true)
+
+4. **New Ticket Form - Students Only** - Fill out form and "Raise your hand" for help.
+
+   ![Students New Help Ticket Form](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/student-new-ticket-form.png?raw=true)
+
+5. **View NEW Ticket Info - Students View** - Recaps ticket information and lets you know the current ticket progress.
+
+   ![Students New Help Ticket Form](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/student-view-ticket-green.png?raw=true)
+
+6. **View IN PROGRESS Ticket Info - Students View** - Recaps ticket information and lets you know who picked up your ticket. You can also choose to close the ticket.
+
+   ![Students New Help Ticket Form](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/student-view-ticket-yellow.png?raw=true)
+
+7. **View CLOSED Ticket Info - Students View** - Recaps ticket information and leaves information on when ticket was closed.
+
+   ![Students New Help Ticket Form](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/view-ticket-red.png?raw=true)
+
+### Teacher Views
+
+8. **Help Ticket Queue - Teacher View** - Teachers you can view new student tickets, tickets that they you have picked up and closed tickets. Click on a ticket for more information.
+
+   ![Teachers Help Ticket Page](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/teacher-help-ticket-page.png?raw=true)
+
+9. **View New Ticket Info - Teachers View** - Recaps ticket information and allows you to "Pick Up" a student's ticket.
+
+![Students New Help Ticket Form](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/teacher-view-ticket-green.png?raw=true)
+
+10. **View IN PROGRESS Ticket Info - Teachers View** - Recaps ticket information and show when you picked up the ticket. You can also choose to close the ticket.
+
+![Students New Help Ticket Form](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/teacher-view-ticket-yellow.png?raw=true)
+
+11. **View CLOSED Ticket Info - Teachers View** - Recaps ticket information and leaves information on when ticket was closed.
+
+![Students New Help Ticket Form](https://github.com/beccahudson/rebecca-virtual-desk-client/blob/master/public/static/screenshots/view-ticket-red.png?raw=true)
+
+## Technologies
+
+10000 is built using the PERN stack, which includes PostgreSQL, Express, React and Node.
+
+## Links
+
+**Github client repo: https://github.com/beccahudson/rebecca-virtual-desk-client**
