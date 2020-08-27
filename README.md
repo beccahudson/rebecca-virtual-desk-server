@@ -39,12 +39,14 @@ Virtual Desk is an app for students to get help more efficiently from a pool of 
 
 As the student, I can:
 
+- Can use my school district's student email and password to login
 - View my "Help Queue" listing all New tickets, In Progress and Closed tickets.
 - Open a help ticket by completing a form containing: subject, question and a due date for the assignment or project.
 - Close a help ticket when I am satisfied with the help.
 
 As the teacher, I can:
 
+- Can use my school district's teacher email and password to login
 - View my "Help Queue" with a list of all current New tickets, In Progress and Closed tickets.
 - Find a help ticket that I can pick up containing: subject, question and a due date of when the assignment or project.
 - Close a help ticket when the student is satisfied with their help.
