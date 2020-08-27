@@ -48,18 +48,6 @@ describe("Users Endpoints", () => {
       });
     });
 
-    it("should return 400 when password is less than 8 characters", () => {
-      let loginUser = {
-        email: "email",
-        password: "pass",
-      };
-      return supertest(app)
-        .post("/users")
-        .send(loginUser)
-        .expect(400)
-        .expect({ error: "Password must be longer than 8 characters" });
-    });
-
     it("should return 400 when email is already in use", () => {
       return supertest(app)
         .post("/users")

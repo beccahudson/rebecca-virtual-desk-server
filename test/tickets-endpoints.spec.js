@@ -25,7 +25,7 @@ describe("Tickets Endpoints", () => {
 
   afterEach("cleanup", () => helpers.cleanTables(db));
 
-  describe("GET /tickets", () => {
+  describe("GET /help_tickets", () => {
     context("given tickets", () => {
       const bearerToken = helpers.makeBearerToken(testUser);
       beforeEach("insert tickets", () => {
@@ -33,7 +33,7 @@ describe("Tickets Endpoints", () => {
       });
       it("should return an array of tickets", () => {
         return supertest(app)
-          .get("/tickets")
+          .get("/help_tickets")
           .set("Authorization", `Bearer ${bearerToken}`)
           .expect(200);
       });
@@ -72,35 +72,35 @@ describe("Tickets Endpoints", () => {
       it("should return 400 with missing fields", () => {
         const id = 1;
         return supertest(app)
-          .patch(`/tickets/:id`)
+          .patch(`/help_tickets/:id`)
           .set("Authorization", `Bearer ${bearerToken}`)
           .expect(400, { error: "Needs at least one update field" });
       });
       it("should return a 401 with an id that can't be found", () => {
         const id = 1979;
         return supertest(app)
-          .patch("/tickets/:id")
+          .patch("/help_tickets/:id")
           .set("Authorization", `Bearer ${bearerToken}`)
           .send({ subject: "spanish", question: "what is spanish" })
-          .expect(400, { error: "Could not find ticket" });
+          .expect(401, { error: "Could not find ticket" });
       });
       it("should return a 401 when id doesn't match bearer token", () => {
         const id = 100;
         const bearerToken2 = helpers.makeBearerToken(testUsers[1]);
         const bearerTokenMatchingUser1 = bearerToken2;
         return supertest(app)
-          .patch("/tickets/:id")
+          .patch("/help_tickets/:id")
           .set("Authorization", `Bearer ${bearerTokenMatchingUser1}`)
           .send({ subject: "spanish", question: "what is spanish" })
           .expect(401, { error: "Unauthorized request" });
       });
-      it("should return 204", () => {
+      it("should return 200", () => {
         const id = 1;
         return supertest(app)
-          .patch("/tickets/:id")
+          .patch("/help_tickets/:id")
           .set("Authorization", `Bearer ${bearerToken}`)
           .send({ question: "what is spanish" })
-          .expect(204);
+          .expect(200);
       });
     });
 

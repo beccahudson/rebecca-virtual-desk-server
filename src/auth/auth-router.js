@@ -16,8 +16,8 @@ authRouter.post("/login", (req, res, next) => {
   AuthService.getUserWithEmail(req.app.get("db"), loginUser.email)
     .then((dbUser) => {
       if (!dbUser)
-        return res.status(400).json({
-          error: "Incorrect user_name or password",
+        return res.status(401).json({
+          error: "User not found",
         });
       return AuthService.comparePasswords(
         loginUser.password,
@@ -25,7 +25,7 @@ authRouter.post("/login", (req, res, next) => {
         (compareMatch) => {
           if (!compareMatch)
             return res.status(400).json({
-              error: "Incorrect user_name or password",
+              error: "Incorrect email or password",
             });
           const sub = dbUser.email;
           const payload = { user_id: dbUser.id };
